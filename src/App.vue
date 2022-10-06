@@ -1,32 +1,34 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+var docEl = document.documentElement
+function setRemUnit() {
+  var rem = docEl.clientWidth / 19.2 // 可根据不同电脑分辨率进行手动修改（如1920*1080 为19.2
+  docEl.style.fontSize = rem + 'px'
 }
 
-nav {
-  padding: 30px;
-}
+setRemUnit()
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+window.addEventListener('resize', setRemUnit)
+window.addEventListener('pageshow', function (e) {
+  if (e.persisted) {
+    setRemUnit()
+  }
+})
+</script>
 
-nav a.router-link-exact-active {
-  color: #42b983;
+
+
+
+<style lang="less">
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 0.16rem;
 }
 </style>
