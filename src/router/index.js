@@ -30,8 +30,14 @@ const routes = [
         name:'singer',
         component:()=>import('@/views/Singer')
       },
+      {
+        path:'/sheet/:id',
+        name:'sheet',
+        component:()=>import('@/components/SheetDeatil')
+      }
     ]
-  }
+  },
+
   
 ]
 
@@ -40,5 +46,4 @@ const router = new VueRouter({
   // mode:'history',
   routes
 })
-
 export default router

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-butto>123421</el-butto>
+    <el-button>这是排行榜</el-button>
   </div>
 </template>
 

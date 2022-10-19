@@ -1,6 +1,5 @@
 <template>
   <div class="header">
-
     <!-- 最顶部的区域 -->
     <div class="top">
       <!-- 左侧区域 -->
@@ -9,8 +8,8 @@
         <img src="@/assets/log.png" class="logImg">
         <!-- 顶部切换按钮 -->
         <div class="headerChange">
-          <div class="back"><i class="el-icon-back"></i></div>
-          <div class="qianjin"><i class="el-icon-right"></i></div>
+          <div class="back" @click="routerBack"><i class="el-icon-back"></i></div>
+          <div class="qianjin" @click="routerGo"><i class="el-icon-right"></i></div>
         </div>
         <!-- 顶部输入框 -->
         <div class="headerInput">
@@ -37,45 +36,46 @@
         </div>
       </div>
     </div>
-    <!-- 导航区域 -->
-    <div class="nav">
-      <div class="navDetail">
-        <keep-alive>
-          <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" active-text-color='#303133' router>
-            <el-menu-item :index="item.name" v-for="item in menu" :key="item.label">{{item.label}}</el-menu-item>
-          </el-menu>
-        </keep-alive>
-      </div>
-    </div>
+    <music-nav v-if="$route.path!='/sheet'"></music-nav>
   </div>
 </template>
 
 <script>
+import MusicNav from '@/components/MusicNav'
 //封装好的首页数据请求API
 export default {
   name: 'VueSemoCommonHeader',
   data() {
-    return {
-      //导航栏默认选项
-      activeIndex: 'personality',
-      //头部菜单区域渲染数据
-      menu: [
-        { name: 'personality', label: '个性推荐' },
-        { name: 'songSheet', label: '歌单' },
-        { name: 'rankList', label: '排行榜' },
-        { name: 'singer', label: '歌手' },
-      ],
-    }
+    return {}
   },
   created() {},
-  mounted() {},
-  components: {},
-  methods: {},
+  mounted() {
+    console.log(this.$route.path)
+  },
+  components: { MusicNav },
+  methods: {
+    routerBack() {
+      this.$router.back()
+    },
+    routerGo() {
+      this.$router.go(1)
+    },
+  },
 }
 </script>
 
 <style lang="less" scoped>
+@media screen and (max-width: 768px) {
+  .headerMiddle {
+    display: none !important;
+  }
+  .top {
+    display: none !important;
+  }
+}
 .header {
+  position: fixed;
+  width: 100%;
   .top {
     display: flex;
     background-color: #ec4141;
@@ -84,94 +84,75 @@ export default {
     width: 100%;
     .headerLeft {
       display: flex;
-      height: 60px;
+      height: 6rem;
       align-items: center;
       .logImg {
-        width: 123px;
-        height: 60px;
-        margin: 0 50px;
+        width: 12.3rem;
+        height: 6rem;
+        margin: 0 5rem;
       }
       .headerChange {
         display: flex;
         i {
-          font-size: 25px;
+          font-size: 2.5rem;
           color: white;
           border-radius: 50%;
-          margin-left: 15px;
+          margin-left: 1.5rem;
         }
       }
       .headerInput {
         .el-input {
-          margin-left: 30px;
+          margin-left: 3rem;
           /deep/ .el-input__inner {
             background-color: #e13e3e;
-            border-radius: 50px;
+            border-radius: 5rem;
             color: #eee;
             border: none;
-            width: 204px;
+            width: 20.4rem;
           }
         }
       }
       .headerListen {
-        width: 45px;
-        height: 45px;
-        margin-left: 10px;
+        width: 4.5rem;
+        height: 4.5rem;
+        margin-left: 1rem;
         background-color: #e23e3e;
-        border-radius: 50px;
+        border-radius: 5rem;
 
         i {
-          font-size: 20px;
+          font-size: 2rem;
           color: white;
-          line-height: 45px;
-          margin-left: 12px;
+          line-height: 4.5rem;
+          margin-left: 1.2rem;
         }
       }
     }
     .headerMiddle {
-      font-size: 14px;
+      font-size: 1.4rem;
 
-      width: 400px;
-      height: 60px;
+      width: 40rem;
+      height: 6rem;
       color: white;
       word-break: break-all;
       text-align: center;
       overflow: hidden;
       text-overflow: ellipsis;
-      line-height: 60px;
+      line-height: 6rem;
     }
     .headerRight {
       .headPortrait {
         display: flex;
         align-items: center;
         img {
-          width: 50px;
-          height: 50px;
-          border-radius: 50px;
-          margin-right: 10px;
+          width: 5rem;
+          height: 5rem;
+          border-radius: 5rem;
+          margin-right: 1rem;
         }
         i {
-          font-size: 20px;
+          font-size: 2rem;
           color: #eee;
-          margin-right: 20px;
-        }
-      }
-    }
-  }
-  /* 导航区域的样式文件 */
-  .nav {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .navDetail {
-      width: 99%;
-      height: 65px;
-      .el-menu-demo {
-        display: flex;
-        .is-active {
-          font-size: 16px;
-          font-weight: bold;
-          border-bottom: 3px solid #e13e3e !important ;
+          margin-right: 2rem;
         }
       }
     }

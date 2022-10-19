@@ -11,9 +11,9 @@
           <span id="leftName">
           </span>
           <!-- 空心爱心 -->
-          <svg-icon name="shixin" color="pink" className="aixin" @click="aixin" v-if="isAixin" />
+          <svg-icon name="shixin" color="pink" class="aixin" className="aixin" @click="aixin" v-if="isAixin" />
           <!-- 实心爱心 -->
-          <svg-icon name="kongxin" color="gray" className="aixin" @click="aixin" v-else />
+          <svg-icon name="kongxin" color="gray" class="aixin" className="aixin" @click="aixin" v-else />
         </div>
         <!-- 下区域为作者名字 -->
         <span class="author" id="leftAuthor"></span>
@@ -72,18 +72,31 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@media screen and (max-width: 768px) {
+  .aixin {
+    display: none !important;
+  }
+  .author {
+    width: 10rem !important;
+    font-size: 3rem !important;
+    white-space: nowrap;
+  }
+  #leftName {
+    width: 14rem !important;
+  }
+}
 .audioX {
   //将padding扩大
   box-sizing: border-box;
-  width: 100%;
   background-color: #fff;
-  border-top: 1px solid #efefef;
+  border-top: 0.1rem solid #efefef;
   display: flex;
   justify-content: space-between;
+  width: 100%;
   height: 100%;
   /* 播放器左下角 */
   .lAudio {
-    width: 180px;
+    width: 18rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,39 +104,47 @@ export default {
     /* 上方歌名和爱心 */
     .msgAudio {
       position: relative;
-      width: 100px;
-      height: 60px;
+      width: 10rem;
+      height: 10rem;
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
-      margin-left: 20px;
+      margin-left: 2rem;
       .leftName {
         align-items: center;
-        width: 200px;
+        width: 20rem;
         display: flex;
-        span {
+        #leftName {
           font-size: 0.18rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: inline-block;
         }
+      }
+      #leftAuthor {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
 
       .author {
-        width: 220px;
+        width: 22rem;
         color: gray;
-        font-size: 0.14rem;
       }
     }
     //音乐播放器缩略图
     .imgAudio {
-      width: 45px;
+      width: 8rem;
     }
   }
   /* 播放器中间 */
   .mAudio {
-    width: 600px;
+    width: 60rem;
   }
   /* 播放器右边 */
   .rAudio {
-    width: 180px;
+    width: 18rem;
     display: flex;
     justify-content: center;
     align-items: center;

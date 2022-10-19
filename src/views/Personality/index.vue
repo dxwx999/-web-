@@ -1,10 +1,11 @@
 <template>
   <div class="all">
+
     <!-- 数据已加载，渲染页面 -->
     <div class="containerIndex" v-if='isLoad'>
       <!-- 轮播图区域 -->
       <div class="chart personalItem">
-        <el-carousel :interval="4000" type="card" height="240px" class="chartTotal">
+        <el-carousel :interval="4000" type="card" height="24rem" class="chartTotal">
           <el-carousel-item v-for="item in chart" :key="item.imageUrl" class="chartItem">
             <img :src="item.imageUrl+'?param=700y245'" alt="">
           </el-carousel-item>
@@ -15,7 +16,7 @@
         <!-- 左上角推荐歌单字样 -->
         <h2>推荐歌单<i class="el-icon-arrow-right"></i></h2>
         <div class="recommendTotal">
-          <div class="recommendItem" v-for="item in recommend.slice(0, 10)" :key="item.id">
+          <div class="recommendItem" v-for="item in recommend.slice(0, 10)" :key="item.id" @click="routerTo(item.id)">
             <!-- 歌单的图片渲染区域 -->
             <img :src="item.coverImgUrl+'?param=200y200'">
             <!-- 播放量 -->
@@ -53,18 +54,17 @@
                 <div class="songDetail"><span>{{item.song.alias[0]}}</span></div>
               </div>
               <div class="newMsgBtm">
-                <span class="author">{{getName(item.song.artists)}}</span>
+                <span class="authorNew">{{getName(item.song.artists)}}</span>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
     <!-- 数据未加载，渲染等待页面 -->
     <div v-else class="loading">
-      <img src="https://p0.ssl.img.360kuai.com/t015e613e594ae0d138.webp">
-      <div>数据加载中，请稍等...</div>
+      <img src="http://119.3.122.177/wp-content/themes/qzdy-1/images/loading.gif">
+      <div id="loadingText">数据加载中，请稍等...</div>
     </div>
   </div>
 </template>
@@ -73,7 +73,7 @@
 //导入获取轮播图的API
 import { GetChart, GetRecommend, GetSole, GetNewSongs } from '@/request/api'
 export default {
-  name: 'VueSemoIndex',
+  name: 'Personality',
 
   data() {
     return {
@@ -121,6 +121,14 @@ export default {
       const time = min + ':' + s
       return time
     },
+    routerTo(id) {
+      this.$router.push({
+        name: 'sheet',
+        params: {
+          id: id,
+        },
+      })
+    },
     changeSong(id, picUrl, name, artists, duration) {
       picUrl = picUrl + '?param=240y240'
       //处理时间
@@ -164,6 +172,36 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@media screen and (max-width: 768px) {
+  .recommendTotal .recommendItem {
+    width: 50% !important;
+    height: 20% !important;
+  }
+  .songDetail {
+    display: none; //隐藏最新歌曲详情
+  }
+  .newItem {
+    flex-direction: column;
+  }
+  .newItem img {
+    width: 19rem !important;
+  }
+  //独家放送
+  .soleItem {
+    width: 100% !important;
+    padding: 1rem 0 !important;
+  }
+  .soleTotal {
+    display: block !important;
+  }
+  html #loadingText {
+    font-size: 4rem !important;
+  }
+  .authorNew {
+    width: 18rem !important;
+    display: inline-block;
+  }
+}
 img {
   //设置图片禁止拖拽
   -webkit-user-drag: none;
@@ -171,9 +209,8 @@ img {
 h2 {
   padding: 0;
   margin: 0;
-  margin-left: 50px;
-  margin-bottom: 20px;
-  font-size: 0.3rem !important;
+  margin-left: 5rem;
+  margin-bottom: 2rem;
 }
 .all {
   height: 100%;
@@ -182,21 +219,18 @@ h2 {
   justify-content: center;
 }
 .containerIndex {
-  padding-top: 800px;
-  width: 1367px;
-  height: 1300px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   overflow: hidden;
-  margin-top: 50px;
+  margin-top: 5rem;
   //轮播图
   .chart {
     width: 80%;
     .chartTotal {
       .chartItem {
-        border-radius: 20px;
+        border-radius: 2rem;
         img {
           width: 100%;
           height: 100%;
@@ -228,8 +262,8 @@ h2 {
           cursor: pointer;
           width: 90%;
           height: 83%;
-          margin: 10px;
-          border-radius: 10px;
+          margin: 1rem;
+          border-radius: 1rem;
         }
         /*播放量*/
         .playNum {
@@ -237,9 +271,9 @@ h2 {
           width: 38%;
           height: 9%;
           position: absolute;
-          border-radius: 10px;
-          top: 20px;
-          right: 20px;
+          border-radius: 1rem;
+          top: 2rem;
+          right: 2rem;
           color: white;
           font-size: 0.14rem;
           text-align: center;
@@ -248,10 +282,10 @@ h2 {
         /* 播放图标 */
         .el-icon-video-play {
           position: absolute;
-          bottom: 40px;
-          left: 150px;
+          bottom: 4rem;
+          left: 15rem;
           display: none;
-          font-size: 42px;
+          font-size: 4.2rem;
           color: rgb(235, 211, 211);
         }
         /* 歌单简介 */
@@ -282,7 +316,7 @@ h2 {
       width: 100%;
       height: 83%;
       display: flex;
-      margin-top: 15px;
+      margin-top: 1.5rem;
       justify-content: center;
       .soleItem {
         width: 29%;
@@ -291,20 +325,20 @@ h2 {
         img {
           width: 96%;
           height: 83%;
-          margin: 0 14px 0 0;
-          border-radius: 20px;
+          margin: 0 1.4rem 0 0;
+          border-radius: 2rem;
         }
         div {
           width: 94%;
           text-align: center;
-          padding-right: 5px;
+          padding-right: 0.5rem;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
         }
       }
       .soleItem:nth-child(2) {
-        padding: 0 9.5px;
+        padding: 0 0.95rem;
       }
     }
   }
@@ -315,7 +349,7 @@ h2 {
     .newTotal {
       width: 100%;
       height: 86%;
-      margin-top: 10px;
+      margin-top: 1rem;
       justify-content: center;
       display: flex;
       flex-wrap: wrap;
@@ -325,44 +359,48 @@ h2 {
           display: none;
           position: absolute;
           font-size: 0.3rem;
-          left: 22px;
-          top: 22px;
+          left: 2.2rem;
+          top: 2.2rem;
           color: white;
         }
         cursor: pointer;
         display: flex;
         width: 27.6%;
         height: 27.7%;
-        margin: 5px;
+        margin: 0.5rem;
         img {
-          width: 50px;
+          width: 5rem;
         }
         .newMsg {
-          margin-left: 5px;
+          margin-left: 0.5rem;
           .newMsgTop {
-            display: flex;
-            flex-wrap: nowrap;
-
             .songName {
-              font-size: 14px;
-              white-space: nowrap;
-            }
-            .songDetail {
-              margin-left: 5px;
-              margin-top: 1px;
-              height: 20px;
-              width: 230px;
+              font-size: 1.4rem;
               white-space: nowrap;
               overflow: hidden;
               text-overflow: ellipsis;
-              font-size: 10px;
+            }
+            .songDetail {
+              margin-left: 0.5rem;
+              margin-top: 0.1rem;
+              height: 2rem;
+              width: 23rem;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              font-size: 1rem;
               color: #9f9f9f;
             }
           }
           .newMsgBtm {
-            .author {
+            overflow: hidden;
+
+            .authorNew {
               font-size: 0.12rem;
               color: #9f9f9f;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
           }
         }
@@ -375,21 +413,21 @@ h2 {
 }
 .loading {
   text-align: center;
-  height: 400px;
-  img {
-    text-align: center;
-    width: 200px;
-    border-radius: 200px;
-  }
-  div {
-    font-size: 25px;
-  }
+  margin-top: 0rem;
+}
+.loading img {
+  text-align: center;
+  width: 50rem;
+  border-radius: 20rem;
+}
+#loadingText {
+  font-size: 2rem !important;
 }
 
 .personalItem {
-  margin-top: 30px;
+  margin-top: 3rem;
 }
 .personalItem:last-child {
-  margin-bottom: 90px;
+  margin-bottom: 9rem;
 }
 </style>

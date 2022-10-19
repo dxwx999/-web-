@@ -5,9 +5,8 @@ import axios from 'axios'
 
 // 创建一个axios实例
 const instance = axios.create({
-  baseURL:'http://39.101.74.59:3000/'
+  baseURL:'http://119.3.122.177:3000/'
 })
-
 //拦截器 - 请求拦截
 instance.interceptors.request.use(config=>{
   // 部分接口需要拿到token

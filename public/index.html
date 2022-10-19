@@ -1,11 +1,94 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="utf-8">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0”">
+    <link rel="icon" href="./musicLogo.png">
+    <title>音乐播放器</title>
+    <style>
+      *{
+        font-size: 10px !important;
+      }
+      @media screen and (max-width: 768px) { 
+        /* 移动端适配 */
+        *{
+          font-size: 5px !important;
+        }
+        p,span,li {
+        font-size: 3.5rem  !important;
+        }
+        html h2{
+          padding-left: 0.2rem !important;
+          font-size: 5.5rem  !important;
+          margin-left: -3rem !important;
+        }
+        .lAudio{
+          padding-top: 2.5rem;
+        }
+        .mAudio{
+          padding-top: 4rem;
+        }
+        .el-footer{
+          height: 15rem !important;
+        }
+        #leftTime{
+          padding-right: 2rem;
+        }
+        .slideTotal{
+          padding-top: 1rem;
+        }
+        .slide,.slide2{
+          height: 1rem !important;
+        }
+        .pointer{
+          width: 1.5rem !important;
+          height: 1.5rem !important;
+          bottom:-0.2rem !important;
+        }
+
+        .el-button{
+          padding:2rem !important;
+          margin: 0 !important;
+        }
+        .forthLine p{
+          display: none;
+        }
+        .listItem{
+          height: 8rem !important;
+        }
+        .first,.second,.forth{
+          text-align: center;
+          line-height: 8rem;
+          padding-right: 2rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        .first{
+          width: 70rem !important;
+        }
+        .first span:first-child{
+          width: 5rem !important;
+        }
+        .third{
+          display: none;
+        }
+        .sheetMsg{
+          display: none !important;
+        }
+        .header{
+          height: 0 !important;
+        }
+        .listTop{
+          display: none !important;
+        }
+        .containerIndex{
+          padding-top: 7rem;
+        }
+     }
+
+    </style>
   </head>
   <body>
     <noscript>

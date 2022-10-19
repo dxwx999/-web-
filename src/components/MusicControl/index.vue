@@ -116,7 +116,7 @@ export default {
 
 <style lang="less" scoped>
 .panel {
-  padding-bottom: 0px;
+  padding-bottom: 0rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -136,8 +136,8 @@ export default {
         cursor: pointer;
         position: absolute;
         width: 100%;
-        height: 4px;
-        border-radius: 40px;
+        height: 0.4rem;
+        border-radius: 4rem;
         z-index: 6;
         background-color: #e4e7ed;
         // 控制伸缩的方向
@@ -149,27 +149,27 @@ export default {
         //通过伪元素增加可点击面积
         content: '';
         position: absolute;
-        top: -10px;
-        bottom: -10px;
-        right: 0px;
-        left: 0px;
+        top: -1rem;
+        bottom: -1rem;
+        right: 0rem;
+        left: 0rem;
       }
       .slide2 {
         //无法点击，点击事件会穿过去点击下一层
         pointer-events: none;
         position: absolute;
-        height: 4px;
-        border-radius: 30px 0 0 30px;
+        height: 0.4rem;
+        border-radius: 3rem 0 0 3rem;
         background-color: #ff4e4e;
         z-index: 10;
         left: 0;
       }
       .pointer {
         position: absolute;
-        bottom: 6px;
+        bottom: 0.6rem;
         background-color: red;
-        height: 8px;
-        width: 8px;
+        height: 0.8rem;
+        width: 0.8rem;
         border-radius: 50%;
         z-index: 20;
         left: -1%;
@@ -178,9 +178,9 @@ export default {
     span {
       width: 14%;
       display: inline-block;
-      height: 20px;
+      height: 2rem;
       color: gray;
-      font-size: 13px;
+      font-size: 1.3rem;
       right: 0;
     }
     .lTime {
@@ -189,7 +189,7 @@ export default {
   }
   .playControl {
     width: 100%;
-    height: 50px;
+    height: 5rem;
     display: flex;
     align-items: center;
     justify-content: center;

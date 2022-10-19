@@ -39,15 +39,15 @@ export default {
 
 <style lang="less" scoped>
 .controlIcon {
-  margin: 0 20px;
+  margin: 0 2rem;
 }
 .aixin {
-  padding-left: 5px;
+  padding-left: 0.5rem;
 }
 .rightControl {
-  padding-right: 20px;
+  padding-right: 2rem;
 }
 .rc1 {
-  margin-right: 40px;
+  margin-right: 4rem;
 }
 </style>
